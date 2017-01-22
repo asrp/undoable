@@ -1,8 +1,12 @@
 # Undoable
 
-A simple Python list (`observed_list`) and dict (`observed_dict`) with callbacks when they are changed and undo/redo using these callbacks. Implemented using the [command pattern](https://en.wikipedia.org/wiki/Command_pattern).
+A simple Python list (`observed_list`) and dict (`observed_dict`) with callbacks when they are changed and undo/redo using these callbacks.
 
 Also includes `observed_tree`, a labelled tree with ordered children implemented as Python list with parent pointers and a bit of consistency check.
+
+## Implementation
+
+Implemented using the [command pattern](https://en.wikipedia.org/wiki/Command_pattern). See [my blog post discussing this](https://asrp.github.io/blog/undo-redo.html).
 
 ## Example
 
