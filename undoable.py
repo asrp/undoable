@@ -195,7 +195,12 @@ class observed_list(list):
         oldlist = self[:]
         self.skiplog += 1
         del self[:]
-        self.extend(newlist)
+        try:
+            self.extend(newlist)
+        except:
+            self.replace(oldlist) # Hopefully no infinite loops happens
+            self.skiplog -= 1
+            raise
         self.skiplog -= 1
         self.callback(("replace", oldlist), ("replace", newlist))
 
@@ -266,7 +271,12 @@ class observed_dict(dict):
         oldvalue = self.copy()
         self.skiplog += 1
         self.clear()
-        self.update(newdict)
+        try:
+            self.update(newdict)
+        except:
+            self.replace(oldvalue) # Hopefully no infinite loops happens
+            self.skiplog -= 1
+            raise
         self.skiplog -= 1
         self.callback(("replace", newdict), ("replace", oldvalue))
 
@@ -389,7 +399,12 @@ class observed_tree(list):
         oldlist = self[:]
         self.skiplog += 1
         del self[:]
-        self.extend(newlist)
+        try:
+            self.extend(newlist)
+        except:
+            self.replace(oldlist) # Hopefully no infinite loops happens
+            self.skiplog -= 1
+            raise
         self.skiplog -= 1
         self.callback(("replace", oldlist), ("replace", newlist))
 
