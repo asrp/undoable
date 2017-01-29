@@ -41,7 +41,7 @@ class UndoLog(object):
         self.undoroot.append(observed_tree(name=(elem, undoitem, redoitem)))
 
     def clear_redo(self):
-        if self.undoroot == self.root and self.index > -1:
+        if self.undoroot == self.root and self.index != -1:
             # Need to delete everything if we aren't the last index!
             del self.root[self.index+1:]
             self.index = -1
