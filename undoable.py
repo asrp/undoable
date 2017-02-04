@@ -186,10 +186,10 @@ class observed_list(list):
         list.reverse(self)
         self.callback(("reverse",), ("reverse",))
 
-    def sort(self, cmpfunc=None):
+    def sort(self, *args, **kwargs):
         oldlist = self[:]
-        list.sort(self, cmpfunc)
-        self.callback(("replace", oldlist), ("sort",))
+        list.sort(self, *args, **kwargs)
+        self.callback(("replace", oldlist), ("replace", self[:]))
 
     def replace(self, newlist):
         oldlist = self[:]
@@ -264,7 +264,7 @@ class observed_dict(dict):
 
     def popitem(self):
         key, value = dict.popitem(self)
-        self.callback(("__setitem__", key, default), ("popitem",))
+        self.callback(("__setitem__", key, value), ("popitem",))
         return key, value
 
     def replace(self, newdict):
@@ -391,9 +391,10 @@ class observed_tree(list):
         list.reverse(self)
         self.callback(("reverse",), ("reverse",))
 
-    def sort(self, cmpfunc=None):
-        list.sort(self, cmpfunc)
-        self.callback(("replace", oldlist), ("sort",))
+    def sort(self, *args, **kwargs):
+        oldlist = self[:]
+        list.sort(self, *args, **kwargs)
+        self.callback(("replace", oldlist), ("replace", self[:]))
 
     def replace(self, newlist):
         oldlist = self[:]
