@@ -94,7 +94,7 @@ class UndoLog(object):
 
     def pprint(self, node=None):
         for line in self.pprint_string(node):
-            print line
+            print(line)
 
     def pprint_string(self, node=None, indent=0):
         if node is None:
@@ -297,7 +297,7 @@ class observed_tree(list):
 
     def callback(self, undo, redo, origin=None):
         # TODO: Need to think of a better way to pass self along
-        if origin == None:
+        if origin is None:
             origin = self
         for callback in self.callbacks:
             callback(origin, *redo)
@@ -427,7 +427,7 @@ class observed_tree(list):
 
 # Add this to callbacks for debugging
 def printargs(*args):
-    print args
+    print(args)
 
 if __name__ == '__main__':
     # minimal demonstration
