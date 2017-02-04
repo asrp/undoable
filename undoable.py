@@ -170,7 +170,7 @@ class observed_list(list):
         oldlen = len(self)
         list.extend(self, newvalue)
         self.callback(("__delslice__", oldlen, len(self)),
-                      ("extend", newvalue))
+                      ("extend", self[oldlen:]))
 
     def insert(self, i, element):
         list.insert(self, i, element)
@@ -368,11 +368,10 @@ class observed_tree(list):
     def extend(self, newvalue):
         oldlen = len(self)
         list.extend(self, newvalue)
-        newvalue = newvalue[:]
         for value in newvalue:
             value._reparent(self, True)
         self.callback(("__delslice__", oldlen, len(self)),
-                      ("extend", newvalue))
+                      ("extend", self[oldlen:]))
 
     def insert(self, i, element):
         element._reparent(self, True)
