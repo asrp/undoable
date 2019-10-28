@@ -17,7 +17,7 @@ Implemented using the [command pattern](https://en.wikipedia.org/wiki/Command_pa
 
     >>> from undoable import observed_dict, observed_list
     >>> def printargs(*args):
-    ...     print args
+    ...     print(args)
     ... 
     >>> l = observed_list([1, 2, 3])
     >>> l.callbacks.append(printargs)
