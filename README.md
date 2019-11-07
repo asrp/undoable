@@ -20,7 +20,7 @@ cd undoable
 ```python
 >>> from undoable import observed_dict, observed_list
 >>> def printargs(*args):
-...     print args
+...     print(args)
 ...
 >>> l = observed_list([1, 2, 3])
 >>> l.callbacks.append(printargs)
